@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>直播</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.3.5/skins/default/aliplayer-min.css" />
+
+  <style>
+    .video-js {
+      margin: 50px auto;
+    }
+    
+    .btn-box {
+      text-align: center;
+    }
+    
+    .btn-box>.btn {
+      width: 120px;
+      height: 40px;
+      border: none;
+      background: linear-gradient(to right, #ff285b, #ff1f2e);
+      color: #fff;
+      border-radius: 3px;
+      margin: 0 10px;
+      outline: #ff5122;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <video id="my-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="300" data-setup='{}'>
+      <!-- <source src="http://open.zhongxiang.shop/AppName/StreamName.m3u8?auth_key=1530692339-0-0-6ba3b6a799671d4067f223072942f3b8" type="application/x-mpegURL"></source> -->
+      <!--   <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+  <source src="http://p2zt37e65.bkt.clouddn.com/20180613_150235.mp4" type="video/mp4"></source>
+  <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+  <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">
+      supports HTML5 video
+    </a>
+  </p> -->
+    </video>
+    <div class="btn-box">
+      <button class="btn" id="video-btn">视频</button>
+      <button class="btn" id="live-btn">直播</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video.js"></script>
+  <script src="https://cdn.bootcss.com/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+
+  <script>
+    var box = document.querySelector('#my-player');
+    if (box.length > 0) {
+      var player = videojs('my-player');
+      player.dispose();
+    }
+
+    var options = {
+      bigPlayButton: false,
+      textTrackDisplay: false,
+      posterImage: true,
+      errorDisplay: false,
+      controlBar: true,
+      sources: [{
+        withCredentials: false,
+        type: 'application/x-mpegURL',
+        src: 'http://open.zhongxiang.shop/AppName/StreamName.m3u8?auth_key=1530760378-0-0-d97829d1859c7549fd03f959cd5ed7a9'
+      }, {
+        type: "rtmp/mp4",
+        src: "rtmp://open.zhongxiang.shop/AppName/StreamName?auth_key=1530760378-0-0-916a9375fed48f20cecddff544465e7a"
+      }, {
+        src: "http://open.zhongxiang.shop/AppName/StreamName.flv?auth_key=1530760378-0-0-becc077c4f91e53a76cb250fa90b91eb",
+        type: 'rtmp/flv'
+      }],
+    };
+
+    var player = videojs('my-player', options, function onPlayerReady() {
+      // videojs.log('Your player is ready!');
+
+      // player.src({
+      // src: 'http://open.zhongxiang.shop/AppName/StreamName.m3u8?auth_key=1530757324-0-0-2407f33c81a2d7043e7b77d82a437f48',
+      /*  src: 'http://cdn.theoplayer.com/video/star_wars_episode_vii-the_force_awakens_official_comic-con_2015_reel_(2015)/index.m3u8', */
+      // type: 'application/x-mpegURL',
+      // withCredentials: true
+      // });
+      // In this context, `this` is the player that was created by Video.js.
+
+      var vBtn = document.querySelector('#video-btn');
+      vBtn.addEventListener('click', function() {
+
+        player.src({
+          src: 'https://outin-51e13bfb802911e8920100163e1a3b4a.oss-cn-shanghai.aliyuncs.com/d170351b7fb640daa710deae6aa641ce/d07563b5544446bebbf85efec314f7d4-4f818c22b258d5bbd7727b773544171d-ld.m3u8?Expires=1530783323&OSSAccessKeyId=LTAInFumgYEtNMvC&Signature=fmJgNeMbUFG0sVU4rvwNVxNjJ2Y%3D',
+          type: 'application/x-mpegURL'
+        });
+        player.play();
+      })
+
+      this.play();
+
+      // How about an event listener?
+      this.on('ended', function() {
+        // videojs.log('Awww...over so soon?!');
+      });
+    });
+  </script>
+
+  <script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.3.5/aliplayer-min.js"></script>
+  <script type="text/javascript">
+    document.write("<div id = 'J_prismPlayer' style='width: 1920px;height: 1280px;' class='prism-player'></div >");
+    window.onload = function() {
+      new Aliplayer({
+        id: "J_prismPlayer",
+        autoplay: true,
+        width: "1920px",
+        height: "1280px",
+        vid: "d170351b7fb640daa710deae6aa641ce",
+        playauth: "https://outin-51e13bfb802911e8920100163e1a3b4a.oss-cn-shanghai.aliyuncs.com/d170351b7fb640daa710deae6aa641ce/d07563b5544446bebbf85efec314f7d4-4f818c22b258d5bbd7727b773544171d-ld.m3u8?Expires=1530783323&OSSAccessKeyId=LTAInFumgYEtNMvC&Signature=fmJgNeMbUFG0sVU4rvwNVxNjJ2Y%3D",
+      });
+    };
+  </script>
+</body>
+
+</html>
